@@ -31,37 +31,40 @@ Per executar aquest projecte cal tenir instal·lat:
 ### 1. Clonar el repositori
 
 ```bash
-git clone <URL_DEL_REPOSITORI>
-cd practica-mongodb
-2. Iniciar l’entorn
-docker compose up -d
-3. Verificar contenidors
-docker ps
+    git clone <URL_DEL_REPOSITORI>
+    cd practica-mongodb
+    2. Iniciar l’entorn
+    docker compose up -d
+    3. Verificar contenidors
+    docker ps
 
-Han d’aparèixer:
+    Han d’aparèixer:
 
-mongodb-botiga
-mongoexpress-botiga
-4. Accedir a Mongo Express
+    mongodb-botiga
+    mongoexpress-botiga
+    4. Accedir a Mongo Express
 
-Obrir al navegador:
+    Obrir al navegador:
 
-http://localhost:8081
-5. Executar scripts
+    http://localhost:8081
+    5. Executar scripts
 
-CRUD:
+    CRUD:
 
-docker cp queries/crud.js mongodb-botiga:/crud.js
+    docker cp queries/crud.js mongodb-botiga:/crud.js
 
-docker exec -it mongodb-botiga mongosh -u admin -p admin123 --authenticationDatabase admin /crud.js
+    docker exec -it mongodb-botiga mongosh -u admin -p admin123 --authenticationDatabase admin /crud.js
 
-Consultes avançades:
+    Consultes avançades:
 
-docker cp queries/advanced.js mongodb-botiga:/advanced.js
+    docker cp queries/advanced.js mongodb-botiga:/advanced.js
 
-docker exec -it mongodb-botiga mongosh -u admin -p admin123 --authenticationDatabase admin /advanced.js
+    docker exec -it mongodb-botiga mongosh -u admin -p admin123 --authenticationDatabase admin /advanced.js 
+```
+
 📁 Estructura del projecte
-'''
+
+```
     practica-mongodb/
     │
     ├── docker-compose.yml
@@ -73,15 +76,16 @@ docker exec -it mongodb-botiga mongosh -u admin -p admin123 --authenticationData
     │   └── advanced.js          # Consultes avançades + índexs
     ├── README.md
     └── practica.md
-'''
-🧪 Comandes principals
-▶️ Iniciar entorn
+```
+
+### 🧪 Comandes principals
+## ▶️ Iniciar entorn
 docker compose up -d
-⛔ Aturar entorn
+## ⛔ Aturar entorn
 docker compose down
-📊 Veure logs
+## 📊 Veure logs
 docker logs mongodb-botiga
-🗄️ Operacions MongoDB
+## 🗄️ Operacions MongoDB
 Entrar a MongoDB manualment
 docker exec -it mongodb-botiga mongosh -u admin -p admin123 --authenticationDatabase admin
 Seleccionar base de dades
@@ -91,20 +95,20 @@ db.productes.find()
 db.productes.find({ preu: { $lt: 50 } })
 db.productes.updateOne(...)
 db.productes.deleteOne(...)
-💾 Volums i persistència
-📦 Volum principal
+## 💾 Volums i persistència
+## 📦 Volum principal
 ./data:/data/db
 
 🔹 Guarda totes les dades de MongoDB
 🔹 Permet que les dades NO es perdin quan es reinicien els contenidors
 
-⚙️ Volum d’inicialització
+## ⚙️ Volum d’inicialització
 ./mongo-init:/docker-entrypoint-initdb.d
 
 🔹 Executa automàticament init.js al primer inici
 🔹 Crea la base de dades i dades inicials
 
-🌐 Xarxes
+## 🌐 Xarxes
 Xarxa utilitzada
 xarxa-botiga
 
@@ -117,7 +121,7 @@ Mongo Express
 
 més seguretat
 comunicació interna sense exposar ports
-📌 Resum funcional
+## 📌 Resum funcional
 
 Aquest projecte permet:
 
