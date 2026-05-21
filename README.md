@@ -31,103 +31,155 @@ Per executar aquest projecte cal tenir instal·lat:
 ### 1. Clonar el repositori
 
 ```bash
-    git clone <URL_DEL_REPOSITORI>
-    cd practica-mongodb
-    2. Iniciar l’entorn
-    docker compose up -d
-    3. Verificar contenidors
-    docker ps
-
-    Han d’aparèixer:
-
-    mongodb-botiga
-    mongoexpress-botiga
-    4. Accedir a Mongo Express
-
-    Obrir al navegador:
-
-    http://localhost:8081
-    5. Executar scripts
-
-    CRUD:
-
-    docker cp queries/crud.js mongodb-botiga:/crud.js
-
-    docker exec -it mongodb-botiga mongosh -u admin -p admin123 --authenticationDatabase admin /crud.js
-
-    Consultes avançades:
-
-    docker cp queries/advanced.js mongodb-botiga:/advanced.js
-
-    docker exec -it mongodb-botiga mongosh -u admin -p admin123 --authenticationDatabase admin /advanced.js 
+git clone <URL_DEL_REPOSITORI>
+cd practica-mongodb
 ```
 
-📁 Estructura del projecte
+---
 
-```
-    practica-mongodb/
-    │
-    ├── docker-compose.yml
-    ├── data/                      # Volum persistent MongoDB
-    ├── mongo-init/
-    │   └── init.js               # Dades inicials
-    ├── queries/
-    │   ├── crud.js              # Operacions CRUD
-    │   └── advanced.js          # Consultes avançades + índexs
-    ├── README.md
-    └── practica.md
-```
+### 2. Iniciar l’entorn
 
-### 🧪 Comandes principals
-## ▶️ Iniciar entorn
+```bash
 docker compose up -d
-## ⛔ Aturar entorn
+```
+
+---
+
+### 3. Verificar contenidors
+
+```bash
+docker ps
+```
+
+Han d’aparèixer:
+
+- mongodb-botiga  
+- mongoexpress-botiga  
+
+---
+
+### 4. Accedir a Mongo Express
+
+Obrir al navegador:
+
+```
+http://localhost:8081
+```
+
+---
+
+### 5. Executar scripts
+
+#### CRUD
+
+```bash
+docker cp queries/crud.js mongodb-botiga:/crud.js
+
+docker exec -it mongodb-botiga mongosh -u admin -p admin123 --authenticationDatabase admin /crud.js
+```
+
+#### Consultes avançades
+
+```bash
+docker cp queries/advanced.js mongodb-botiga:/advanced.js
+
+docker exec -it mongodb-botiga mongosh -u admin -p admin123 --authenticationDatabase admin /advanced.js
+```
+
+---
+
+## 🧪 Comandes principals
+
+### ▶️ Iniciar entorn
+
+```bash
+docker compose up -d
+```
+
+### ⛔ Aturar entorn
+
+```bash
 docker compose down
-## 📊 Veure logs
+```
+
+### 📊 Veure logs
+
+```bash
 docker logs mongodb-botiga
+```
+
+---
+
 ## 🗄️ Operacions MongoDB
-Entrar a MongoDB manualment
+
+### Entrar a MongoDB manualment
+
+```bash
 docker exec -it mongodb-botiga mongosh -u admin -p admin123 --authenticationDatabase admin
-Seleccionar base de dades
+```
+
+### Seleccionar base de dades
+
+```javascript
 use botiga
-Exemple de consultes
+```
+
+### Exemple de consultes
+
+```javascript
 db.productes.find()
 db.productes.find({ preu: { $lt: 50 } })
 db.productes.updateOne(...)
 db.productes.deleteOne(...)
+```
+
+---
+
 ## 💾 Volums i persistència
-## 📦 Volum principal
+
+### 📦 Volum principal
+
+```
 ./data:/data/db
+```
 
-🔹 Guarda totes les dades de MongoDB
-🔹 Permet que les dades NO es perdin quan es reinicien els contenidors
+- Guarda totes les dades de MongoDB  
+- Permet que les dades no es perdin en reiniciar contenidors  
 
-## ⚙️ Volum d’inicialització
+---
+
+### ⚙️ Volum d’inicialització
+
+```
 ./mongo-init:/docker-entrypoint-initdb.d
+```
 
-🔹 Executa automàticament init.js al primer inici
-🔹 Crea la base de dades i dades inicials
+- Executa automàticament `init.js` al primer inici  
+- Crea la base de dades i dades inicials  
+
+---
 
 ## 🌐 Xarxes
-Xarxa utilitzada
+
+### Xarxa utilitzada
+
+```
 xarxa-botiga
+```
 
-🔹 Permet comunicació interna entre:
+- Permet comunicació interna entre MongoDB i Mongo Express  
+- Millora la seguretat i separació de serveis  
 
-MongoDB
-Mongo Express
+---
 
-🔹 Avantatge:
-
-més seguretat
-comunicació interna sense exposar ports
 ## 📌 Resum funcional
 
 Aquest projecte permet:
 
-Crear base de dades MongoDB amb Docker
-Gestionar dades amb CRUD
-Fer consultes avançades
-Crear índexs per optimitzar rendiment
-Mantenir persistència amb volums
-Visualitzar dades amb Mongo Express
+- Crear una base de dades MongoDB amb Docker  
+- Gestionar dades amb operacions CRUD  
+- Fer consultes avançades  
+- Crear índexs per optimitzar rendiment  
+- Mantenir persistència amb volums  
+- Visualitzar dades amb Mongo Express  
+```
