@@ -249,3 +249,28 @@ Exemple
     etiquetes: "nou"
   }
 }
+
+PREGUNTAS TEORICAS 1. Índices
+
+Tener demasiados índices puede ser perjudicial porque:
+
+mejoran lecturas (SELECT más rápidos)
+pero empeoran escrituras (INSERT/UPDATE más lentos)
+ocupan más memoria
+
+Es un trade-off entre rendimiento de lectura y escritura.
+
+2. Operadores usados
+$and → todas las condiciones
+$or → una u otra condición
+$gte → mayor o igual
+$lte → menor o igual
+$regex → búsqueda de texto
+$group → agrupación de datos
+$sum → suma
+$avg → media
+sort() → ordenar
+limit() → limitar resultados
+createIndex() → crear índice
+getIndexes() → ver índices
+explain() → analizar rendimiento
