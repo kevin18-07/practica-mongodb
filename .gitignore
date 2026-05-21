@@ -1,0 +1,13 @@
+data/
+*.wt
+*.lock
+*.log
+diagnostic.data/
+journal/
+node_modules/data/
+*.wt
+*.lock
+*.log
+diagnostic.data/
+journal/
+node_modules/
