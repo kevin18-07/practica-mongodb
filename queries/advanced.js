@@ -105,22 +105,28 @@ printjson(
 
 print("\n8. Index simple categoria");
 
-db.productes.createIndex({ categoria: 1 });
+printjson(
+  db.productes.createIndex({ categoria: 1 })
+);
 
 
 print("\n9. Index compost categoria + preu");
 
-db.productes.createIndex({
-  categoria: 1,
-  preu: 1
-});
+printjson(
+  db.productes.createIndex({
+    categoria: 1,
+    preu: 1
+  })
+);
 
 
 print("\n10. Index de text en nom");
 
-db.productes.createIndex({
-  nom: "text"
-});
+printjson(
+  db.productes.createIndex({
+    nom: "text"
+  })
+);
 
 
 print("\n11. Explain (sense índex)");
